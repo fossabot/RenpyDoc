@@ -6,6 +6,7 @@ Local renpy documentation (This app is not official, it only serves as a desktop
 2) use ``yarn install`` or ``npm install``
 3) to run the app ``yarn start`` or ``npm run start``
 ## install from installer
-1) run exe and install
+1) [Download installer](https://github.com/Neyunse/RenpyDoc/releases)
+2) run exe and install
 
 Note: For linux and mac use the src install
