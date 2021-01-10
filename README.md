@@ -8,4 +8,4 @@ Local renpy documentation (This app is not official, it only serves as a desktop
 ## install from installer
 1) run exe and install
 
-Note: For linux and mac use this form
+Note: For linux and mac use the src install
