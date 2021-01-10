@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/doc.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+</head>
+
+<body>
+    <div class="wp">
+        <div class="bar">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li>
+
+                        <input id="uri" type="text" readonly placeholder="renpydoc://app/doc">
+                    </li>
+                    <li>
+                        <span class="indicator"><i class="fas fa-spinner rotating"></i></span>
+                    </li>
+                    <li>
+                        <i id="left" class="fas fa-angle-left"></i>
+                    </li>
+                    <li>
+                        <i id="right" class="fas fa-angle-right"></i>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+        <div class="container">
+            <webview id="foo" src="http://localhost:3000" style="display:inline-flex; width:100%; height:100%">
+            </webview>
+        </div>
+        <script>
+            onload = () => {
+                const webview = document.querySelector('webview')
+                const indicator = document.querySelector('.indicator')
+
+                webview.addEventListener("dom-ready", function () {
+                    const loadstart = () => {
+                        indicator.style.display = 'block'
+                    }
+
+                    const loadstop = () => {
+                        indicator.style.display = 'none'
+                    }
+
+                    webview.addEventListener('did-start-loading', loadstart)
+                    webview.addEventListener('did-stop-loading', loadstop)
+                    document.getElementById("left").addEventListener("click", function () {
+                        webview.goBack()
+                    });
+                    document.getElementById("right").addEventListener("click", function () {
+                        webview.goForward()
+                    });
+                    const uri = webview.getURL()
+                    if (uri == "http://ja.renpy.org/doc/html/") {
+                        document.getElementById("uri").innerText = "http://ja.renpy.org/doc/html/"
+                    } else if (uri == "https://www.renpy.cn/doc/index.html") {
+                        document.getElementById("uri").value = "https://www.renpy.cn/doc/index.html"
+                    } else {
+                        document.getElementById("uri").value = "renpydoc://app/doc"
+                    }
+                })
+            }
+        </script>
+    </div>
+</body>
+
+</html>
